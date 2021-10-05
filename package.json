@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xugaoyi/vuepress-theme-vdoing.git"
+    "url": "https://github.com/eddievandeer/vuepress-theme-vivek"
   },
   "dependencies": {
     "@vuepress/plugin-back-to-top": "^1.5.4",
