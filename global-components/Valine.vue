@@ -45,13 +45,14 @@
         },
         methods: {
             initValine() {
+                console.log(this.$themeConfig.appId);
                 let urls = window.location.pathname.split("/")
                 this.url = '/' + urls[1] + '/' + urls[2]
 
                 this.valine.init({
                     el: '#valine-vuepress-comment',
-                    appId: "eytWDTcVXxD6jB2TPPIFVljq-gzGzoHsz",
-                    appKey: 'sJRhu6ftXLC0eNR4vsjo3Euy',
+                    appId: this.$themeConfig.appId,
+                    appKey: this.$themeConfig.appKey,
                     placeholder: '在此处输入评论：',
                     path: this.url,
                     visitor: true,
