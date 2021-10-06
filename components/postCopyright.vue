@@ -26,13 +26,13 @@
 <script>
 export default {
   name: 'postCopyright',
-  computed: {
-    copyrightLink() {
-      return location.href
+  data() {
+    return {
+      copyrightLink: ''
     }
   },
   mounted() {
-    console.log(this.$page)
+    this.copyrightLink = location.href
   }
 }
 </script>
