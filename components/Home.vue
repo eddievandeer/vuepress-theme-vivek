@@ -203,14 +203,17 @@ export default {
       }
       return false;
     },
+    hideHeader() {
+      if(this.$route.path === '/') {
+        const header = document.querySelector(".blog-header");
+        header.classList.add("hide");
+      }
+    }
   },
   mounted() {
     let top = document.querySelector(".global-ui");
 
-    top.addEventListener("click", () => {
-      let header = document.querySelector(".blog-header");
-      header.classList.add("hide");
-    });
+    top.addEventListener("click", this.hideHeader);
 
     this.$nextTick(() => {
       let main = this.$refs.main;
