@@ -33,7 +33,6 @@
                 const halfPagerCount = (pagerCount - 1) / 2
                 const currentPage = this.currentPage
                 const pageCount = this.pageCount + 1
-                console.log(pagerCount);
 
                 let showPrevMore = false
                 let showNextMore = false

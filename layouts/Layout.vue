@@ -89,9 +89,6 @@ export default {
     handleToggle() {
       this.sidebar = !this.sidebar
     }
-  },
-  mounted() {
-    console.log(this.$page.frontmatter)
   }
 };
 </script>
