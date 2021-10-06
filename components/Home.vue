@@ -64,7 +64,7 @@
       <div class="blog-articles">
         <blog-articles
           :pageNumber="pageNumber"
-          :filted="pages"
+          :filted="$sortedPages"
           path="page"
         ></blog-articles>
       </div>
@@ -86,18 +86,12 @@ export default {
   data() {
     return {
       main: null,
-      pages: [],
       scrollOffset: 0,
       mouseEvent: "",
       inSlides: true,
       interval: null,
       slidesLock: false,
     };
-  },
-  beforeMount() {
-    this.pages = this.$site.pages.filter((v) => {
-      return v.path.endsWith("html");
-    });
   },
   methods: {
     bindEvent() {
