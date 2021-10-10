@@ -39,7 +39,7 @@
           <blog-articles
             v-else
             :pageNumber="$route.params.pageNumber || '1'"
-            :filted="$sortedPages"
+            :filted="$listPages"
             :path="`${this.$route.path.split('/')[1]}${this.$route.path.split('/')[1] !== 'page' ? '/' + this.$route.path.split('/')[2] : ''}`"
           ></blog-articles>
         </div>
