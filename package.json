@@ -13,12 +13,16 @@
     "@vuepress/plugin-nprogress": "^1.5.4",
     "@vuepress/plugin-search": "^1.5.4",
     "chalk": "^4.1.0",
+    "commander": "^8.2.0",
     "font-awesome": "^4.7.0",
     "log-symbols": "^4.0.0",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
     "valine": "^1.4.14",
     "vuepress-plugin-container": "^2.1.5"
+  },
+  "bin": {
+    "vivek": "./script/index.js"
   },
   "keywords": [
     "documentation",
@@ -30,8 +34,10 @@
   ],
   "author": "cavalheiro",
   "license": "MIT",
-  "maintainers": [{
-    "name": "Vivek",
-    "email": "eddievandeer@163.com"
-  }]
+  "maintainers": [
+    {
+      "name": "Vivek",
+      "email": "eddievandeer@163.com"
+    }
+  ]
 }
