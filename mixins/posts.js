@@ -12,7 +12,11 @@ export default {
             return pages
         },
         $listPages() {
-            return this.$sortedPages.filter((page) => page.regularPath.split("/")[1] == this.$route.path.split("/")[1])
+            let routePath = this.$route.path.split("/")[1]
+
+            if(routePath == 'page') return this.$sortedPages
+
+            return this.$sortedPages.filter((page) => page.regularPath.split("/")[1] == routePath)
         },
         $categories() {
             const siteCategories = new Map()
