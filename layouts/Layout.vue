@@ -1,11 +1,11 @@
 <template>
-  <div class="theme-container">
+  <div :class="['theme-container', {'sidebar': sidebar}]">
     <blog-header v-on:toggle="handleToggle"></blog-header>
 
-    <div>
+    <div class="theme-container__inner">
       <blog-index :sidebar="sidebar"></blog-index>
       <!-- 主页 -->
-      <section :class="['main-container', {'sidebar': sidebar}]">
+      <section class="main-container">
         <blog-home v-if="$page.frontmatter.home"></blog-home>
 
         <!-- 列表页 -->
@@ -95,19 +95,42 @@ export default {
 
 <style lang="scss" scoped>
   @import '../styles/values.scss';
+
+  .theme-container {
+    .main-container {
+      transition: all .2s ease-in-out;
+    }
+
+    &.sidebar .main-container {
+      transition: padding .2s ease-in-out;
+      padding-left: 20rem;
+    }
+  }
   
   .main-container {
     min-height: $container-min-height;
     box-sizing: border-box;
-    transition: padding .2s ease-in-out;
-    &.sidebar {
-      padding-left: 20rem;
-    }
   }
 
   @media screen and (max-width: 768px) {
-    .main-container.sidebar {
+    .theme-container.sidebar {
       padding-left: 0;
+      background-color: $word-color;
+
+      .theme-container {
+        margin: 1.5rem;
+        border-radius: 0.85rem;
+        background-color: $primary-background;
+      }
+
+      .theme-container__inner {
+        // height: 100vh;
+        overflow: hidden;
+      }
+
+      .main-container {
+        transform: translate3d(8rem,0,0);
+      }
     }
   }
 </style>
