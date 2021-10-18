@@ -2,9 +2,10 @@
   <div class="blog-footer">
     <div class="beian" v-if="footer.beian">
       <a :href="footer.beian.link" target="_blank" rel="noopener noreferrer">
-        {{footer.beian.context}}
+        {{ footer.beian.context }}
       </a>
     </div>
+    <p>Copyright © {{ footer.createYear }}-{{ footer.currentYear || 'Present' }} {{ $themeConfig.author }} | Theme By Vivek</p>
     <div class="support" v-html="footer.support"></div>
   </div>
 </template>
