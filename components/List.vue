@@ -4,7 +4,7 @@
       <div class="about">
         <Content />
       </div>
-      <blog-articles :filted="filted" :pageNumber="pageNumber"></blog-articles>
+      <blog-articles :filted="$listPages" :pageNumber="pageNumber"></blog-articles>
     </div>
   </client-only>
 </template>
@@ -19,37 +19,6 @@ export default {
     blogIndex,
   },
   props: ["pageNumber"],
-  data() {
-    return {
-      filted: [],
-    };
-  },
-  methods: {
-    filtPage() {
-      this.filted = this.$site.pages.filter((v) => {
-        return (
-          v.path.endsWith("html") &&
-          v.regularPath.split("/")[1] == window.location.pathname.split("/")[1]
-        );
-      });
-
-      this.filted.sort((a, b) => {
-        return (
-          new Date(b.frontmatter.postTime) - new Date(a.frontmatter.postTime)
-        );
-      });
-    },
-  },
-  beforeMount() {
-    this.filtPage();
-  },
-  watch: {
-    $route(to, from) {
-      if (to.path !== from.path) {
-        this.filtPage();
-      }
-    },
-  },
 };
 </script>
 

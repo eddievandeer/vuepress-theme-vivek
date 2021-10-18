@@ -65,23 +65,16 @@
             handlePageChange({
                 pageNumber
             }) {
-                this.setPage(pageNumber)
                 this.$router.push({
                     path: !this.path ? 
                         `/${window.location.pathname.split('/')[1]}/page/${pageNumber}` :
                         `/${this.path}/${pageNumber}`
                 })
+                this.setPage(pageNumber)
             }
         },
-        beforeMount() {
+        mounted() {
             this.setPage(this.pageNumber ? this.pageNumber : 1)
-        },
-        watch: {
-            $route(to, from) {
-                if (to.path !== from.path) {
-                    this.setPage(this.pageNumber ? this.pageNumber : 1)
-                }
-            }
         }
     }
 </script>

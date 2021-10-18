@@ -25,7 +25,7 @@
                 <post-copyright />
             </div>
             <pagination></pagination>
-            <Valine></Valine>
+            <Valine v-if="$themeConfig.valine"></Valine>
         </div>
     </div>
 </template>

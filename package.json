@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-vivek",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple style vuepress theme. 一个简约风格的vuepress主题。",
   "main": "index.js",
   "repository": {
@@ -30,8 +30,10 @@
   ],
   "author": "cavalheiro",
   "license": "MIT",
-  "maintainers": [{
-    "name": "Vivek",
-    "email": "eddievandeer@163.com"
-  }]
+  "maintainers": [
+    {
+      "name": "Vivek",
+      "email": "eddievandeer@163.com"
+    }
+  ]
 }
