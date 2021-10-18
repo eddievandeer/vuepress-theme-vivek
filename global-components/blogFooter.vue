@@ -5,8 +5,7 @@
         {{footer.beian.context}}
       </a>
     </div>
-    <p>{{ footer.copyrightInfo }}</p>
-    <div class="support" v-html="footer.surpport"></div>
+    <div class="support" v-html="footer.support"></div>
   </div>
 </template>
 
