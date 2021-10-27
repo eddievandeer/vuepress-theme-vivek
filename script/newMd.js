@@ -4,7 +4,9 @@ const path = require('path');
 const symbols = require('log-symbols')
 const chalk = require('chalk');
 
-function newMd(folder, fileName) {
+const { isFileExisted } = require('./utils')
+
+function newMd(folder, fileName, buffer) {
     if(!fileName) {
         let folderPath = path.resolve(__dirname, `../../docs/post`)
         fileName = folder
@@ -22,30 +24,11 @@ function newMd(folder, fileName) {
         .then((response) => {
             console.log(symbols.error, chalk.red(response));
         }, () => {
-            const date = new Date().toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\//g, '-')
-
-            const buffer = '---\n' +
-                `title: ${fileName}\n` +
-                `postTime: ${date}\n` +
-                '---';
-
             fs.writeFile(filePath, buffer, function (err) {
                 if (err) console.log(symbols.error, chalk.red(err));
                 else console.log(chalk.green(symbols.success, 'File created successfully!'));
             })
         });
-}
-
-function isFileExisted(file) {
-    return new Promise(function (resolve, reject) {
-        fs.access(file, (err) => {
-            if (err) {
-                reject(err.message);
-            } else {
-                resolve('File already exists!');
-            }
-        });
-    })
 }
 
 module.exports = newMd
