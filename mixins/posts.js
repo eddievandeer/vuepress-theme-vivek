@@ -1,12 +1,23 @@
 import { sortPostsByStickyAndDate } from '../util/postsData'
-import {countCategories, countTags} from '../util/helper'
+import { countCategories, countTags } from '../util/helper'
 
 export default {
     computed: {
-        $sortedPages() {
-            let pages = this.$site.pages
+        $filteredPages() {
+            const { filters } = this.$themeConfig
+            let pages = this.$site.pages.filter(page => page.path.endsWith('html'))
+            
+            return pages.filter(page => {
+                if(filters && filters.length > 0) {
+                    return !filters.includes(page.frontmatter.categories)
+                }
 
-            pages = pages.filter(page => page.path.endsWith('html'))
+                return !page.frontmatter.not
+            })
+        },
+        $sortedPages() {
+            let pages = this.$filteredPages
+
             sortPostsByStickyAndDate(pages)
 
             return pages
