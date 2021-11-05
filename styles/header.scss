@@ -36,7 +36,8 @@
       text-decoration: none;
     }
 
-    &:hover {
+    &:hover,
+    &:focus {
       background-color: $word-color;
 
       button {
@@ -45,9 +46,9 @@
     }
   }
 
-  &.home {
-    position: fixed;
-  }
+  // &.home {
+  //   position: fixed;
+  // }
 }
 
 .tool-bar {
@@ -86,7 +87,7 @@
   transition: all 0.2s ease-in-out;
   overflow: hidden;
 
-  &:hover {
+  &:focus-within {
     .bar-item-list {
       border: 1px solid #d1d1d1;
       transform: translateY(209px);
