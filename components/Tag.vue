@@ -1,17 +1,15 @@
 <template>
-    <client-only>
-        <div class="tag-container">
-            <div class="blog-tag">
-                <div class="tag-tile">
-                    <h1><i class="fa fa-tag" aria-hidden="true"></i>{{tag}}</h1>
-                </div>
-                <Archive :pages="pages"></Archive>
-                <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
-                    @page-change="handlePageChange($event)">
-                </page-controller>
+    <div class="tag-container">
+        <div class="blog-tag">
+            <div class="tag-tile">
+                <h1><i class="fa fa-tag" aria-hidden="true"></i>{{tag}}</h1>
             </div>
+            <Archive :pages="pages"></Archive>
+            <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
+                @page-change="handlePageChange($event)">
+            </page-controller>
         </div>
-    </client-only>
+    </div>
 </template>
 
 <script>
@@ -83,6 +81,7 @@
     @import '../styles/values.scss';
 
     .tag-container {
+        min-height: $container-min-height;
         @extend .flex-column;
         background-color: $primary-background;
         justify-content: space-between;

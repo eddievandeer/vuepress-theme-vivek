@@ -1,12 +1,10 @@
 <template>
-  <client-only>
-    <div class="theme-container">
-      <div class="about">
-        <Content />
-      </div>
-      <blog-articles :filted="$listPages" :pageNumber="pageNumber"></blog-articles>
+  <div class="theme-container">
+    <div class="about">
+      <Content />
     </div>
-  </client-only>
+    <blog-articles :filted="$listPages" :pageNumber="pageNumber"></blog-articles>
+  </div>
 </template>
 
 <script>

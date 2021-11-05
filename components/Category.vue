@@ -1,17 +1,15 @@
 <template>
-    <client-only>
-        <div class="category-container">
-            <div class="blog-category">
-                <div class="category-tile">
-                    <h1><i class="fa fa-folder-o" aria-hidden="true"></i>{{child ? child : category}}</h1>
-                </div>
-                <Archive :pages="pages"></Archive>
+    <div class="category-container">
+        <div class="blog-category">
+            <div class="category-tile">
+                <h1><i class="fa fa-folder-o" aria-hidden="true"></i>{{child ? child : category}}</h1>
             </div>
-            <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
-                @page-change="handlePageChange($event)">
-            </page-controller>
+            <Archive :pages="pages"></Archive>
         </div>
-    </client-only>
+        <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
+            @page-change="handlePageChange($event)">
+        </page-controller>
+    </div>
 </template>
 
 <script>
@@ -87,6 +85,7 @@
     @import '../styles/values.scss';
 
     .category-container {
+        min-height: $container-min-height;
         @extend .flex-column;
         background-color: $primary-background;
         justify-content: space-between;
