@@ -16,8 +16,6 @@
 </template>
 
 <script>
-    import parsePage from './parsePage'
-
     export default {
         name: 'Pagination',
         data() {
@@ -38,7 +36,7 @@
         },
         methods: {
             initPage() {
-                const nowPages = parsePage(this.$site.pages),
+                const nowPages = this.$sortedPages,
                     nowPageKey = this.$page.key
 
                 for (let i = 0; i < nowPages.length; i++) {
@@ -58,7 +56,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../styles/values.scss';
+    @import '../styles/values.scss';
 
     .pagination-wrapper {
         width: 100%;
