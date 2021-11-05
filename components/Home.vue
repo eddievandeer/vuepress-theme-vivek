@@ -244,41 +244,41 @@ export default {
 .blog-home {
   @extend .flex;
   width: 100%;
-  height: 100vh;
+  height: $container-height;
   position: relative;
   // background-image: url("../../public/assets/img/background.jpg");
   // background-size: cover;
+}
 
-  .home-content {
-    @extend .flex-column;
+.home-content {
+  @extend .flex-column;
 
-    // .blog-icon {
-    //       width: 260px;
-    //       height: 260px;
-    //       // background-image: url(https://i.loli.net/2020/09/12/wdN45JRBkQtsfhj.jpg);
-    //       background-image: url("../../public/assets/img/logo.jpg");
-    //       background-size: cover;
-    //       box-sizing: border-box;
-    //       border-radius: 20px;
-    //       border: 5px solid white;
-    //       display: none;
-    // }
+  // .blog-icon {
+  //       width: 260px;
+  //       height: 260px;
+  //       // background-image: url(https://i.loli.net/2020/09/12/wdN45JRBkQtsfhj.jpg);
+  //       background-image: url("../../public/assets/img/logo.jpg");
+  //       background-size: cover;
+  //       box-sizing: border-box;
+  //       border-radius: 20px;
+  //       border: 5px solid white;
+  //       display: none;
+  // }
+}
 
-    .blog-description {
-      @extend .flex-column;
-      margin-top: 150px;
+.blog-description {
+  @extend .flex-column;
+  margin-top: 150px;
 
-      h1 {
-        font-size: 46px;
-        color: rgb(148, 188, 218);
-      }
+  h1 {
+    font-size: 46px;
+    color: rgb(148, 188, 218);
+  }
 
-      p {
-        color: rgb(209, 209, 209);
-        text-align: center;
-        line-height: 26px;
-      }
-    }
+  p {
+    color: rgb(209, 209, 209);
+    text-align: center;
+    line-height: 26px;
   }
 }
 
