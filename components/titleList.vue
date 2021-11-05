@@ -78,6 +78,13 @@
             $route(to, from) {
                 if (to.path !== from.path) {
                     this.setTitles()
+                    this.activeIndex = -1
+                    window.removeEventListener("scroll", this.onScroll);
+                } else {
+                    if (!this.titles[0].url) {
+                        // this.onScroll()
+                        window.addEventListener("scroll", this.onScroll);
+                    }
                 }
             }
         }
