@@ -88,6 +88,7 @@
 
     .category-container {
         @extend .flex-column;
+        background-color: $primary-background;
         justify-content: space-between;
 
         .blog-category {

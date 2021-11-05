@@ -56,6 +56,7 @@
     .categories-container {
         padding: 1rem 5rem 2rem;
         @extend .flex-column;
+        background-color: $primary-background;
         justify-content: flex-start;
 
         // p {
