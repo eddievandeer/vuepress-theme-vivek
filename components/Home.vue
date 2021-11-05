@@ -1,75 +1,74 @@
 <template>
-  <client-only>
-    <div class="home-page" ref="main">
-      <div
-        class="blog-home-background"
-        :style="{ 'background-image': `url('${$themeConfig.background}')` }"
-      ></div>
-      <div class="blog-home">
-        <div class="home-content">
-          <!-- <div class="blog-icon"></div> -->
-          <div class="blog-description">
-            <h1>{{ $page.frontmatter.title }}</h1>
-            <p>本博客网站基于HTML5开发，若无法正常访问请更换高版本浏览器</p>
-          </div>
+  <div class="home-page" ref="main">
+    <div
+      class="blog-home-background"
+      :style="{ 'background-image': `url('${$themeConfig.background}')` }"
+    ></div>
+    <div class="blog-home">
+      <div class="home-content">
+        <!-- <div class="blog-icon"></div> -->
+        <div class="blog-description">
+          <h1>{{ $page.frontmatter.title }}</h1>
+          <p>本博客网站基于HTML5开发，若无法正常访问请更换高版本浏览器</p>
         </div>
-        <drop-down></drop-down>
-        <div class="cloud">
-          <svg
-            class="waves"
-            viewBox="0 24 150 28"
-            preserveAspectRatio="none"
-            shape-rendering="auto"
-          >
-            <defs>
+      </div>
+      <drop-down></drop-down>
+      <div class="cloud">
+        <svg
+          class="waves"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shape-rendering="auto"
+        >
+          <defs>
+            <path
+              id="gentle-wave"
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+              fill="white"
+            ></path>
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" opacity="0.7">
               <path
                 id="gentle-wave"
                 d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
                 fill="white"
               ></path>
-            </defs>
-            <g class="parallax">
-              <use xlink:href="#gentle-wave" x="48" y="0" opacity="0.7">
-                <path
-                  id="gentle-wave"
-                  d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-                  fill="white"
-                ></path>
-              </use>
-              <use xlink:href="#gentle-wave" x="48" y="3" opacity="0.5">
-                <path
-                  id="gentle-wave"
-                  d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-                  fill="white"
-                ></path>
-              </use>
-              <use xlink:href="#gentle-wave" x="48" y="5" opacity="0.3">
-                <path
-                  id="gentle-wave"
-                  d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-                  fill="white"
-                ></path>
-              </use>
-              <use xlink:href="#gentle-wave" x="48" y="7">
-                <path
-                  id="gentle-wave"
-                  d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
-                  fill="white"
-                ></path>
-              </use>
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div class="blog-articles">
-        <blog-articles
-          :pageNumber="pageNumber"
-          :filted="$sortedPages"
-          path="page"
-        ></blog-articles>
+            </use>
+            <use xlink:href="#gentle-wave" x="48" y="3" opacity="0.5">
+              <path
+                id="gentle-wave"
+                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+                fill="white"
+              ></path>
+            </use>
+            <use xlink:href="#gentle-wave" x="48" y="5" opacity="0.3">
+              <path
+                id="gentle-wave"
+                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+                fill="white"
+              ></path>
+            </use>
+            <use xlink:href="#gentle-wave" x="48" y="7">
+              <path
+                id="gentle-wave"
+                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+                fill="white"
+              ></path>
+            </use>
+          </g>
+        </svg>
       </div>
     </div>
-  </client-only>
+    <div class="blog-articles">
+      <blog-articles
+        :pageNumber="pageNumber"
+        :filted="$sortedPages"
+        path="page"
+      ></blog-articles>
+      <blog-footer></blog-footer>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -288,6 +287,24 @@ export default {
 }
 
 @media screen and (max-width: 768px) {
+  .home-page {
+    width: 100vw;
+    height: $container-height;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-padding: 60px;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .blog-home,
+  .blog-articles {
+    scroll-snap-align: start;
+  }
+  
   .blog-description {
     margin-top: 80px !important;
 
