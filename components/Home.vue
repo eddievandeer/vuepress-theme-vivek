@@ -145,15 +145,15 @@ export default {
       this.scrollOffset =
         document.documentElement.scrollTop || document.body.scrollTop;
 
-      if (event.preventDefault) {
-        event.preventDefault();
-        event.stopPropagation();
-      } else if (document.all) {
-        event.cancelBubble = true;
-        event.returnValue = false;
-      } else {
-        event.stopPropagation();
-      }
+      // if (event.preventDefault) {
+      //   event.preventDefault();
+      //   event.stopPropagation();
+      // } else if (document.all) {
+      //   event.cancelBubble = true;
+      //   event.returnValue = false;
+      // } else {
+      //   event.stopPropagation();
+      // }
 
       if (
         (window.location.pathname != "/" || this.slidesLock) &&
@@ -169,10 +169,10 @@ export default {
       let header = document.querySelector(".blog-header");
       let home = document.querySelector(".blog-home");
       if (deltaY > 0) {
-        window.scrollTo(0, home.scrollHeight);
+        // window.scrollTo(0, home.scrollHeight);
         header.classList.remove("hide");
       } else {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         header.classList.add("hide");
       }
 
@@ -190,10 +190,10 @@ export default {
       if (window.location.pathname != "/") {
         return;
       }
+      let container = document.querySelector('.home-page')
       let header = document.querySelector(".blog-header");
       let home = document.querySelector(".blog-home");
-      let scrolled =
-        document.documentElement.scrollTop || document.body.scrollTop;
+      let scrolled = container.scrollTop
 
       if (scrolled <= home.scrollHeight - 120) {
         header.classList.add("hide");
