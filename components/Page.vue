@@ -97,63 +97,65 @@
     .article {
         display: block;
         // padding-left: 20rem;
+    }
 
-        .article-detail {
-            max-width: 740px;
-            margin: 1.5rem auto;
-            padding: 1rem 3rem;
-            background-color: #fcfcfc;
-            transition: box-shadow .1s ease-in-out;
-            box-shadow: $card-shadow;
+    .article-detail {
+        max-width: 740px;
+        margin: 1.5rem auto;
+        padding: 1rem 3rem;
+        background-color: #fcfcfc;
+        transition: box-shadow .1s ease-in-out;
+        box-shadow: $card-shadow;
 
-            .post-header {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                .post-title {
-                    width: 100%;
-                    padding: 10px;
-                    margin-bottom: 1rem;
-                    text-align: center;
-                }
-
-                .post-meta {
-                    width: fit-content;
-                    height: auto;
-                    color: #555;
-                    font-size: 14px;
-                    font-family: Helvetica;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    .post-time {
-                        margin-bottom: .4rem;
-                    }
-                }
-            }
-
-            &:hover {
-                box-shadow: $card-shadow-hover;
-            }
+        &:hover {
+            box-shadow: $card-shadow-hover;
         }
+    }
+
+    .post-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .post-title {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .post-meta {
+        width: fit-content;
+        height: auto;
+        color: #555;
+        font-size: 14px;
+        font-family: Helvetica;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .post-time {
+        margin-bottom: .4rem;
     }
 
     @media screen and (max-width: 768px) {
         .article {
             padding-left: 0;
+        }
 
-            .article-detail {
-                padding: .6rem 1rem;
-                margin: 0;
+        .article-detail {
+            width: 100%;
+            box-sizing: border-box;
+            padding: .6rem 1rem;
+            margin: 0;
+        }
 
-                .post-meta {
-                    width: 100%;
-                }
-            }
+        .post-meta {
+            width: 100%;
         }
     }
 </style>
