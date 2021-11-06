@@ -161,7 +161,7 @@ export default {
       )
         return;
 
-      this.slidesLock = true;
+      // this.slidesLock = true;
 
       this.doScroll(deltaY);
     },
@@ -176,9 +176,9 @@ export default {
         header.classList.add("hide");
       }
 
-      this.interval = setTimeout(() => {
-        this.slidesLock = false;
-      }, 500);
+      // this.interval = setTimeout(() => {
+      //   this.slidesLock = false;
+      // }, 500);
     },
     ifInSlide(deltaY, offset) {
       let home = document.querySelector(".blog-home");
@@ -229,8 +229,8 @@ export default {
 .blog-home-background {
   content: "";
   z-index: -10;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   // background-image: url(https://i.loli.net/2020/09/11/ElcNrtJVkPWamOo.jpg);
   background-size: cover;
   background-repeat: no-repeat;
