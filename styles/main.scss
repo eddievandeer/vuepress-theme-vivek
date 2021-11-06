@@ -1,8 +1,18 @@
 @import './values.scss';
 
+:root {
+      overflow-x: hidden;
+}
+
+:root body {
+      width: 100vw;
+      position: absolute;
+      // overflow: hidden;
+}
+
 ::-webkit-scrollbar {
-      width: 12px;
-      height: 12px;
+      width: 8px;
+      height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -12,6 +22,7 @@
 
 ::-webkit-scrollbar-thumb {
       // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+      border-radius: 25px;
       background-color: #bebebe;
 }
 
