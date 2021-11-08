@@ -1,9 +1,9 @@
 <template>
   <div :class="['theme-container', {'sidebar': sidebar}]">
     <blog-header v-on:toggle="handleToggle"></blog-header>
+    <title-list :sidebar="sidebar" v-on:jump="handleToggle"></title-list>
 
     <div class="theme-container__inner">
-      <blog-index :sidebar="sidebar"></blog-index>
       <!-- 主页 -->
       <section class="main-container">
         <blog-home v-if="$page.frontmatter.home"></blog-home>
@@ -46,9 +46,9 @@
 
         <!-- 文章页 -->
         <blog-page v-else></blog-page>
+        <blog-footer v-if="!$page.frontmatter.home"></blog-footer>
       </section>
     </div>
-    <blog-footer></blog-footer>
   </div>
 </template>
 
@@ -61,7 +61,7 @@ import blogTags from "@theme/components/Tags";
 import blogTag from "@theme/components/Tag";
 import blogPage from '@theme/components/Page';
 import AboutMe from '@theme/components/AboutMe';
-import blogIndex from '@theme/components/blogIndex';
+import titleList from '@theme/components/titleList';
 import blogArticles from '@theme/components/blogArticles';
 
 export default {
@@ -74,7 +74,7 @@ export default {
     blogTag,
     AboutMe,
     blogPage,
-    blogIndex,
+    titleList,
     blogArticles,
   },
   data() {
@@ -96,19 +96,26 @@ export default {
 <style lang="scss" scoped>
   @import '../styles/values.scss';
 
+  .theme-container__inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   .theme-container {
-    .main-container {
-      transition: all .2s ease-in-out;
-    }
+    transition-duration: .2s;
+    transition-property: transform background-color;
+    transition-timing-function: ease-in-out;
+    // transition: all .2s ease-in-out;
 
     &.sidebar .main-container {
-      transition: padding .2s ease-in-out;
       padding-left: 20rem;
     }
   }
-  
+
   .main-container {
-    min-height: $container-min-height;
+    width: 100vw;
+    transition: all .2s ease-in-out;
     box-sizing: border-box;
   }
 
@@ -124,12 +131,16 @@ export default {
       }
 
       .theme-container__inner {
-        // height: 100vh;
+        perspective: 1000px;
         overflow: hidden;
       }
 
       .main-container {
-        transform: translate3d(8rem,0,0);
+        height: 100vh;
+        overflow: auto;
+        padding: 0;
+        // transform: translate(20rem);
+        transform: translate(20rem) rotateY(30deg);
       }
     }
   }
