@@ -1,7 +1,9 @@
 @import './values.scss';
 
 .article-list {
+      min-height: calc(100vh - 200px);
       @extend .flex-column;
+      justify-content: space-between;
       margin: 50px 0;
 }
 
@@ -147,6 +149,7 @@
 
       .article-item {
             width: 100%;
+            border-radius: 5px;
 
             &:hover {
                   box-shadow: none;

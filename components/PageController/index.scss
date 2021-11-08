@@ -5,7 +5,9 @@
     height: 3rem;
     // padding: 0 10rem;
     box-sizing: border-box;
+    border-radius: 5px;
     margin-top: 1rem;
+    background-color: $primary-background;
     @extend .flex;
 
     a {

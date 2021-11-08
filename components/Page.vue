@@ -148,7 +148,7 @@
         }
 
         .article-detail {
-            width: 100%;
+            max-width: 100%;
             box-sizing: border-box;
             padding: .6rem 1rem;
             margin: 0;

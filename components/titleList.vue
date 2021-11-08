@@ -1,11 +1,11 @@
 <template>
     <div class="list-container" :class="{hide: !sidebar}">
         <div class="list-item" v-for="(title, index) in titles" :key="index" :class="{active: index==activeIndex}">
-            <a v-if="title.url" :target="title.level == 3 ? '__blank' : ''" :href="title.url"
-                :class="setLevel(title.level)">
+            <a class="list-item-link" v-if="title.url" :target="title.level == 3 ? '__blank' : ''" :href="title.url"
+                :class="setLevel(title.level)" @click="$emit('jump')">
                 <p>{{ title.title }}</p>
             </a>
-            <a v-else :href="'#' + title.slug" :class="setLevel(title.level)">
+            <a class="list-item-link" v-else :href="'#' + title.slug" :class="setLevel(title.level)" @click="$emit('jump')">
                 <p>{{ title.title }}</p>
             </a>
         </div>
@@ -124,68 +124,74 @@
             background-color: #cacaca;
         }
 
-        .list-item {
-            width: 100%;
-            min-height: 20px;
-            // margin: 10px 0;
-            // border-bottom: 1px solid #d1d1d1;
-            border-left: 4px solid transparent;
-            background-color: $primary-background;
-            transition-property: box-shadow, background-color;
-            transition-duration: 0.2s, 0.2s;
-            transition-timing-function: ease-in-out;
-
-            a {
-                width: 100%;
-                height: 100%;
-                color: #2c3e50;
-                text-decoration: none;
-                display: flex;
-                align-items: center;
-                box-sizing: border-box;
-
-                &.index-level-2 {
-                    font-size: 16px;
-                    font-weight: 600;
-
-                    p {
-                        padding: 5px 0 5px 20px;
-                        margin: 0;
-                    }
-                }
-
-                &.index-level-3 {
-                    font-size: 14px;
-
-                    p {
-                        padding: 5px 0 5px 40px;
-                        margin: 0;
-                    }
-                }
-            }
-
-            &:hover,
-            &.active {
-                // background-color: var(--color-bg-hover);
-                // border-bottom: 1px solid transparent;
-                // border-radius: 5px;
-                // box-shadow: $primary-shadow;
-
-                a {
-                    color: #2a80b9;
-                }
-            }
-
-            &.active {
-                border-left-color: #2a80b9;
-            }
-        }
-
         // @media screen and (max-width: 768px) {
         &.hide {
             transform: translateX(-320px);
         }
 
         // }
+    }
+
+    .list-item {
+        width: 100%;
+        min-height: 20px;
+        // margin: 10px 0;
+        // border-bottom: 1px solid #d1d1d1;
+        border-left: 4px solid transparent;
+        background-color: $primary-background;
+        transition-property: box-shadow, background-color;
+        transition-duration: 0.2s, 0.2s;
+        transition-timing-function: ease-in-out;
+
+        &:hover,
+        &.active {
+            // background-color: var(--color-bg-hover);
+            // border-bottom: 1px solid transparent;
+            // border-radius: 5px;
+            // box-shadow: $primary-shadow;
+
+            a {
+                color: #2a80b9;
+            }
+        }
+
+        &.active {
+            border-left-color: #2a80b9;
+        }
+    }
+
+    .list-item-link {
+        width: 100%;
+        height: 100%;
+        color: #2c3e50;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+
+        &.index-level-2 {
+            font-size: 16px;
+            font-weight: 600;
+
+            p {
+                padding: 5px 0 5px 20px;
+                margin: 0;
+            }
+        }
+
+        &.index-level-3 {
+            font-size: 14px;
+
+            p {
+                padding: 5px 0 5px 40px;
+                margin: 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .list-container {
+            width: 280px;
+        }
     }
 </style>
