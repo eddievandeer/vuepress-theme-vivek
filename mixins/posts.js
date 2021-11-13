@@ -5,10 +5,11 @@ export default {
     computed: {
         $filteredPages() {
             const { filters } = this.$themeConfig
+            let routePath = this.$route.path.split("/")[1]
             let pages = this.$site.pages.filter(page => page.path.endsWith('html'))
             
             return pages.filter(page => {
-                if(filters && filters.length > 0) {
+                if(filters && filters.length > 0 && routePath == '') {
                     return !filters.includes(page.frontmatter.categories)
                 }
 
