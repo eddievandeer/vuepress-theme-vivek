@@ -121,6 +121,15 @@ module.exports = {
 
 
 
+### filters
+
+- 类型: `Array`
+- 默认值: `undefined`
+
+过滤特定分类的文章（ `frontmatter` 中 `categories` 的值），使该分类下的文章不展示在首页的所有文章的列表中
+
+
+
 ### valine
 
 - 类型: `boolean`
