@@ -137,7 +137,7 @@ export default {
 
       .main-container {
         height: 100vh;
-        overflow: auto;
+        overflow: hidden;
         padding: 0;
         // transform: translate(20rem);
         transform: translate(20rem) rotateY(30deg);
