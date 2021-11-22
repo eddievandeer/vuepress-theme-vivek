@@ -14,7 +14,7 @@
                   dropDown() {
                         let header = document.querySelector('.blog-header')
                         const main = document.querySelector('.blog-home')
-                        const articles = document.querySelector('.blog-articles')
+                        const home = document.querySelector('.home-page')
 
                         header.classList.remove('hide')
                         
@@ -22,8 +22,10 @@
                               window.scrollTo(0, main.clientHeight)
                         }
                         else {
-                              articles.scrollIntoView({
-                                    behavior: "smooth"
+                              home.scrollTo({
+                                    top: 0,
+                                    left: 0,
+                                    behavior: 'smooth'
                               })
                         }
                   }
