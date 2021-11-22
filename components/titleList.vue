@@ -76,8 +76,11 @@
         },
         watch: {
             $route(to, from) {
-                if (to.path !== from.path) {
-                    this.setTitles()
+                this.setTitles()
+                const reg = /(\.html)$/
+                const toPath = to.path.split('/').pop()
+                
+                if (!reg.test(toPath)) {
                     this.activeIndex = -1
                     window.removeEventListener("scroll", this.onScroll);
                 } else {
