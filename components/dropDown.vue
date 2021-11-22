@@ -7,15 +7,25 @@
 </template>
 
 <script>
+      import { IsPC } from '@theme/util/utils'
       export default {
             name: 'dropDown',
             methods: {
                   dropDown() {
                         let header = document.querySelector('.blog-header')
                         const main = document.querySelector('.blog-home')
+                        const articles = document.querySelector('.blog-articles')
 
                         header.classList.remove('hide')
-                        window.scrollTo(0, main.clientHeight)
+                        
+                        if(IsPC()) {
+                              window.scrollTo(0, main.clientHeight)
+                        }
+                        else {
+                              articles.scrollIntoView({
+                                    behavior: "smooth"
+                              })
+                        }
                   }
             }
       }
