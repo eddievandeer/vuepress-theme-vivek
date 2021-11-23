@@ -14,8 +14,36 @@
 
 <script>
     import {
-        parseTitle
+        parseTitle,
+        debounce
     } from "../util/utils";
+
+    function doScroll() {
+        const scrolled = Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+        )
+        // let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+
+        const allTitles = document.querySelectorAll(".content__default h2,h3");
+
+        for (let i = 0; i < allTitles.length; i++) {
+            const title = allTitles[i]
+            const nextTitle = allTitles[i + 1]
+
+            if (
+                (i === 0 && scrolled === 0) ||
+                (
+                    scrolled >= title.offsetTop - 30 &&
+                    (!nextTitle || scrolled < nextTitle.offsetTop - 30)
+                )
+            ) {
+                this.activeIndex = i
+                break;
+            }
+        }
+    }
 
     export default {
         name: "titleList",
@@ -36,33 +64,12 @@
                 let url = window.location.pathname.split("/")[1];
                 // console.log(url);
                 if (this.$page.headers) {
-                    this.activeIndex = 0
+                    // this.activeIndex = 0
                     this.titles = this.$page.headers
                     // this.titles.push(...this.$page.headers);
                 }
             },
-            onScroll() {
-                const scrolled = Math.max(
-                    window.pageYOffset,
-                    document.documentElement.scrollTop,
-                    document.body.scrollTop
-                )
-                // let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-
-                const allTitles = document.querySelectorAll(".content__default h2,h3");
-
-                for (let i = 0; i < allTitles.length; i++) {
-                    const title = allTitles[i]
-                    const nextTitle = allTitles[i + 1]
-
-                    if (i === 0 && scrolled === 0 ||
-                        scrolled >= title.offsetTop - 20 &&
-                        (!nextTitle || scrolled < title.offsetTop + 20)) {
-                        this.activeIndex = i
-                        break;
-                    }
-                }
-            },
+            onScroll: debounce(doScroll, 500)
         },
         mounted() {
             this.setTitles();
