@@ -23,7 +23,7 @@
                         }
                         else {
                               home.scrollTo({
-                                    top: 0,
+                                    top: main.clientHeight,
                                     left: 0,
                                     behavior: 'smooth'
                               })
