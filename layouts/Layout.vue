@@ -1,7 +1,8 @@
 <template>
-  <div :class="['theme-container', {'sidebar': sidebar}]">
-    <blog-header v-on:toggle="handleToggle"></blog-header>
-    <title-list :sidebar="sidebar" v-on:jump="handleToggle"></title-list>
+  <div :class="['theme-container', {'sidebar': sidebar}, {'list': list}]">
+    <blog-header v-on:toggle="handleList"></blog-header>
+    <title-list :sidebar="list"></title-list>
+    <blogSidebar :sidebar="sidebar"></blogSidebar>
 
     <div class="theme-container__inner">
       <!-- 主页 -->
@@ -63,6 +64,7 @@ import blogPage from '@theme/components/Page';
 import AboutMe from '@theme/components/AboutMe';
 import titleList from '@theme/components/titleList';
 import blogArticles from '@theme/components/blogArticles';
+import blogSidebar from '@theme/components/blogSidebar'
 
 export default {
   components: {
@@ -76,18 +78,27 @@ export default {
     blogPage,
     titleList,
     blogArticles,
+    blogSidebar
   },
   data() {
     return {
-      sidebar: false
+      sidebar: false,
+      list: false
     };
+  },
+  mounted() {
+    this.$eventBus.$on('list', this.handleList)
+    this.$eventBus.$on('sidebar', this.handleSidebar)
   },
   methods: {
     specialPage() {
       return Object.getOwnPropertyNames(this.$page.frontmatter).length === 0;
     },
-    handleToggle() {
+    handleSidebar() {
       this.sidebar = !this.sidebar
+    },
+    handleList() {
+      this.list = !this.list
     }
   }
 };
