@@ -2,10 +2,10 @@
     <div class="list-container" :class="{hide: !sidebar}">
         <div class="list-item" v-for="(title, index) in titles" :key="index" :class="{active: index==activeIndex}">
             <a class="list-item-link" v-if="title.url" :target="title.level == 3 ? '__blank' : ''" :href="title.url"
-                :class="setLevel(title.level)" @click="$emit('jump')">
+                :class="setLevel(title.level)">
                 <p>{{ title.title }}</p>
             </a>
-            <a class="list-item-link" v-else :href="'#' + title.slug" :class="setLevel(title.level)" @click="$emit('jump')">
+            <a class="list-item-link" v-else :href="'#' + title.slug" :class="setLevel(title.level)">
                 <p>{{ title.title }}</p>
             </a>
         </div>
@@ -100,7 +100,7 @@
     .list-container {
         z-index: 20;
         width: 320px;
-        height: calc(100vh - 60px);
+        height: $container-height;
         font-size: 16px;
         margin: 0;
         padding: 20px 15px;
@@ -195,6 +195,8 @@
     @media screen and (max-width: 768px) {
         .list-container {
             width: 280px;
+            height: 100vh;
+            top: 0;
         }
     }
 </style>
