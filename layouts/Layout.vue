@@ -119,6 +119,7 @@ export default {
     transition-timing-function: ease-in-out;
     // transition: all .2s ease-in-out;
 
+    &.list .main-container,
     &.sidebar .main-container {
       padding-left: 20rem;
     }
@@ -131,13 +132,16 @@ export default {
   }
 
   @media screen and (max-width: 768px) {
+    .theme-container.list .main-container {
+      padding-left: 0;
+    }
+
     .theme-container.sidebar {
       padding-left: 0;
       background-color: $word-color;
 
       .theme-container {
         margin: 1.5rem;
-        border-radius: 0.85rem;
         background-color: $primary-background;
       }
 
@@ -150,8 +154,10 @@ export default {
         height: 100vh;
         overflow: auto;
         padding: 0;
+        border-radius: 0.85rem;
         // transform: translate(20rem);
-        transform: translate(20rem) rotateY(30deg);
+        background-color: $primary-background;
+        transform: translate(15rem) rotateY(30deg) scale(0.85);
       }
     }
   }
