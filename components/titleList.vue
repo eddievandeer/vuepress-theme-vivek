@@ -2,10 +2,10 @@
     <div class="list-container" :class="{hide: !sidebar}">
         <div class="list-item" v-for="(title, index) in titles" :key="index" :class="{active: index==activeIndex}">
             <a class="list-item-link" v-if="title.url" :target="title.level == 3 ? '__blank' : ''" :href="title.url"
-                :class="setLevel(title.level)" @click="$emit('jump')">
+                :class="setLevel(title.level)">
                 <p>{{ title.title }}</p>
             </a>
-            <a class="list-item-link" v-else :href="'#' + title.slug" :class="setLevel(title.level)" @click="$emit('jump')">
+            <a class="list-item-link" v-else :href="'#' + title.slug" :class="setLevel(title.level)">
                 <p>{{ title.title }}</p>
             </a>
         </div>
@@ -14,8 +14,36 @@
 
 <script>
     import {
-        parseTitle
+        parseTitle,
+        debounce
     } from "../util/utils";
+
+    function doScroll() {
+        const scrolled = Math.max(
+            window.pageYOffset,
+            document.documentElement.scrollTop,
+            document.body.scrollTop
+        )
+        // let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
+
+        const allTitles = document.querySelectorAll(".content__default h2,h3");
+
+        for (let i = 0; i < allTitles.length; i++) {
+            const title = allTitles[i]
+            const nextTitle = allTitles[i + 1]
+
+            if (
+                (i === 0 && scrolled === 0) ||
+                (
+                    scrolled >= title.offsetTop - 30 &&
+                    (!nextTitle || scrolled < nextTitle.offsetTop - 30)
+                )
+            ) {
+                this.activeIndex = i
+                break;
+            }
+        }
+    }
 
     export default {
         name: "titleList",
@@ -36,33 +64,12 @@
                 let url = window.location.pathname.split("/")[1];
                 // console.log(url);
                 if (this.$page.headers) {
-                    this.activeIndex = 0
+                    // this.activeIndex = 0
                     this.titles = this.$page.headers
                     // this.titles.push(...this.$page.headers);
                 }
             },
-            onScroll() {
-                const scrolled = Math.max(
-                    window.pageYOffset,
-                    document.documentElement.scrollTop,
-                    document.body.scrollTop
-                )
-                // let scrolled = document.documentElement.scrollTop || document.body.scrollTop;
-
-                const allTitles = document.querySelectorAll(".content__default h2,h3");
-
-                for (let i = 0; i < allTitles.length; i++) {
-                    const title = allTitles[i]
-                    const nextTitle = allTitles[i + 1]
-
-                    if (i === 0 && scrolled === 0 ||
-                        scrolled >= title.offsetTop - 20 &&
-                        (!nextTitle || scrolled < title.offsetTop + 20)) {
-                        this.activeIndex = i
-                        break;
-                    }
-                }
-            },
+            onScroll: debounce(doScroll, 500)
         },
         mounted() {
             this.setTitles();
@@ -76,8 +83,11 @@
         },
         watch: {
             $route(to, from) {
-                if (to.path !== from.path) {
-                    this.setTitles()
+                this.setTitles()
+                const reg = /(\.html)$/
+                const toPath = to.path.split('/').pop()
+                
+                if (!reg.test(toPath)) {
                     this.activeIndex = -1
                     window.removeEventListener("scroll", this.onScroll);
                 } else {
@@ -97,7 +107,7 @@
     .list-container {
         z-index: 20;
         width: 320px;
-        height: calc(100vh - 60px);
+        height: $container-height;
         font-size: 16px;
         margin: 0;
         padding: 20px 15px;
@@ -192,6 +202,8 @@
     @media screen and (max-width: 768px) {
         .list-container {
             width: 280px;
+            height: 100vh;
+            top: 0;
         }
     }
 </style>

@@ -78,24 +78,26 @@
             display: flex;
             justify-content: center;
             align-items: center;
+      }
 
-            .show-list {
-                  font-size: 20px;
-            }
+      .show-list {
+            font-size: 20px;
       }
 
       @media screen and (max-width: 768px) {
             .blog-header {
-                  padding: 0 24px;
-                  justify-content: space-between;
-            }
-            .tool-bar {
-                  justify-content: space-between;
+                  display: none;
 
-                  .tool-bar-1,
-                  .tool-bar-2 {
-                        display: none !important;
-                  }
             }
+            // .tool-bar {
+                  // padding: 0 24px;
+                  // justify-content: flex-end;
+            // }
+
+            // .tool-bar-1,
+            // .tool-bar-2,
+            // .toggle {
+            //       display: none;
+            // }
       }
 </style>

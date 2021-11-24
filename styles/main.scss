@@ -40,8 +40,9 @@ body {
 a {
       text-decoration: none;
 
-      &:focus {
-            outline: none;
+      &:focus-visible {
+            outline: $word-color-blue-light 2px solid;
+            box-shadow: 0 0 10px 2px opacify($word-color-blue-light, 0.3);
       }
 }
 

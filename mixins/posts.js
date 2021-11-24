@@ -3,12 +3,14 @@ import { countCategories, countTags } from '../util/helper'
 
 export default {
     computed: {
+        $sitePages() {
+            return this.$site.pages.filter(page => page.path.endsWith('html'))
+        },
         $filteredPages() {
             const { filters } = this.$themeConfig
             let routePath = this.$route.path.split("/")[1]
-            let pages = this.$site.pages.filter(page => page.path.endsWith('html'))
             
-            return pages.filter(page => {
+            return this.$sitePages.filter(page => {
                 if(filters && filters.length > 0 && routePath == '') {
                     return !filters.includes(page.frontmatter.categories)
                 }
@@ -33,7 +35,7 @@ export default {
         $categories() {
             const siteCategories = new Map()
 
-            this.$sortedPages.forEach((page) => {
+            this.$sitePages.forEach((page) => {
                 countCategories(page, siteCategories)
             })
 
@@ -42,7 +44,7 @@ export default {
         $tags() {
             const siteTags = new Map()
             
-            this.$sortedPages.forEach((page) => {
+            this.$sitePages.forEach((page) => {
                 countTags(page, siteTags)
             })
 
