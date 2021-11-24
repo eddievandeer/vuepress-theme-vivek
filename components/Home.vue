@@ -289,7 +289,7 @@ export default {
 @media screen and (max-width: 768px) {
   .home-page {
     width: 100vw;
-    height: $container-height;
+    height: 100vh;
     overflow: scroll;
     scroll-snap-type: y mandatory;
     scroll-padding: 60px;
@@ -298,6 +298,10 @@ export default {
       width: 0;
       height: 0;
     }
+  }
+
+  .blog-home {
+    height: 100vh;
   }
 
   .blog-home,

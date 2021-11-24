@@ -50,3 +50,31 @@ export function parsePage(pages, now) {
 export function compareDate(a, b) {
     return (new Date(b.frontmatter.postTime) - new Date(a.frontmatter.postTime))
 }
+
+//判断是否是pc端 true为pc端 false为移动端
+export function IsPC() {
+    var userAgentInfo = navigator.userAgent;
+    var Agents = new Array("Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod");
+    var flag = true;
+    for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+}
+
+export function debounce(fn, delay) {
+    let timer = null
+
+    return function() {
+        const context = this
+
+        if (timer) clearTimeout(timer)
+
+        timer = setTimeout(() => {
+            fn.apply(context, arguments)
+        }, delay)
+    }
+}

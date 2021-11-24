@@ -1,7 +1,8 @@
 <template>
-  <div :class="['theme-container', {'sidebar': sidebar}]">
-    <blog-header v-on:toggle="handleToggle"></blog-header>
-    <title-list :sidebar="sidebar" v-on:jump="handleToggle"></title-list>
+  <div :class="['theme-container', {'sidebar': sidebar}, {'list': list}]">
+    <blog-header v-on:toggle="handleList"></blog-header>
+    <title-list :sidebar="list"></title-list>
+    <blogSidebar :sidebar="sidebar"></blogSidebar>
 
     <div class="theme-container__inner">
       <!-- 主页 -->
@@ -63,6 +64,7 @@ import blogPage from '@theme/components/Page';
 import AboutMe from '@theme/components/AboutMe';
 import titleList from '@theme/components/titleList';
 import blogArticles from '@theme/components/blogArticles';
+import blogSidebar from '@theme/components/blogSidebar'
 
 export default {
   components: {
@@ -76,18 +78,27 @@ export default {
     blogPage,
     titleList,
     blogArticles,
+    blogSidebar
   },
   data() {
     return {
-      sidebar: false
+      sidebar: false,
+      list: false
     };
+  },
+  mounted() {
+    this.$eventBus.$on('list', this.handleList)
+    this.$eventBus.$on('sidebar', this.handleSidebar)
   },
   methods: {
     specialPage() {
       return Object.getOwnPropertyNames(this.$page.frontmatter).length === 0;
     },
-    handleToggle() {
+    handleSidebar() {
       this.sidebar = !this.sidebar
+    },
+    handleList() {
+      this.list = !this.list
     }
   }
 };
@@ -108,6 +119,7 @@ export default {
     transition-timing-function: ease-in-out;
     // transition: all .2s ease-in-out;
 
+    &.list .main-container,
     &.sidebar .main-container {
       padding-left: 20rem;
     }
@@ -120,13 +132,16 @@ export default {
   }
 
   @media screen and (max-width: 768px) {
+    .theme-container.list .main-container {
+      padding-left: 0;
+    }
+
     .theme-container.sidebar {
       padding-left: 0;
       background-color: $word-color;
 
       .theme-container {
         margin: 1.5rem;
-        border-radius: 0.85rem;
         background-color: $primary-background;
       }
 
@@ -139,8 +154,10 @@ export default {
         height: 100vh;
         overflow: hidden;
         padding: 0;
+        border-radius: 0.85rem;
         // transform: translate(20rem);
-        transform: translate(20rem) rotateY(30deg);
+        background-color: $primary-background;
+        transform: translate(15rem) rotateY(30deg) scale(0.85);
       }
     }
   }
