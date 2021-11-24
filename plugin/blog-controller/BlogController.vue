@@ -116,7 +116,7 @@
         opacity: 0;
         transform: scale(0.1);
         transition-duration: 0.3s;
-        transition-property: transform opacity;
+        transition-property: transform, opacity;
         transition-timing-function: ease-in-out;
     }
 
