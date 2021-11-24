@@ -94,6 +94,15 @@ module.exports = {
 
 
 
+### logo
+
+- 类型: `string`
+- 默认值: `undefined`
+
+配置在侧边栏中展示的 logo 图片
+
+
+
 ### author
 
 - 类型: `string`
