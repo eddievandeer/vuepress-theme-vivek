@@ -73,7 +73,6 @@ export default {
     },
     methods: {
         handlePreClick(event) {
-            console.log(this.internalCurrentPage);
             const target = event.target
             if (target.className.indexOf('disabled') !== -1 || target.parentNode.className.indexOf('disabled') !== -1) {
                 return

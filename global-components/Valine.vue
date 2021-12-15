@@ -45,7 +45,7 @@
         },
         methods: {
             initValine() {
-                console.log(this.$themeConfig.appId);
+                // console.log(this.$themeConfig.appId);
                 let urls = window.location.pathname.split("/")
                 this.url = '/' + urls[1] + '/' + urls[2]
 
