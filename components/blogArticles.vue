@@ -1,29 +1,27 @@
 <template>
-    <keep-alive>
-        <div class="article-list">
-            <div class="article-item" v-for="(page, index) in pages" :key="index">
-                <div class="detail">
-                    <a :href="page.regularPath" @click.prevent="$router.push(page.regularPath)">
-                        <h1>{{page.title}}</h1>
-                    </a>
-                    <div class="post-meta">
-                        <div class="post-time">
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <time>{{page.frontmatter.postTime.substr(0, 10)}}</time>
-                        </div>
+    <div class="article-list">
+        <div class="article-item" v-for="(page, index) in pages" :key="index">
+            <div class="detail">
+                <a :href="page.regularPath" @click.prevent="$router.push(page.regularPath)">
+                    <h1>{{page.title}}</h1>
+                </a>
+                <div class="post-meta">
+                    <div class="post-time">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <time>{{page.frontmatter.postTime.substr(0, 10)}}</time>
                     </div>
-                    <!-- <div class="detail-item" v-for="(item, index2) in getPageItems(page)"
-                                    :key="index2">
-                                    <span>{{ item }}</span>
-                              </div> -->
-                    <Content :pageKey="page.key" slot-key="abstract" />
                 </div>
-                <article-footer :page="page"></article-footer>
+                <!-- <div class="detail-item" v-for="(item, index2) in getPageItems(page)"
+                                :key="index2">
+                                <span>{{ item }}</span>
+                            </div> -->
+                <Content :pageKey="page.key" slot-key="abstract" />
             </div>
-            <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
-                @page-change="handlePageChange($event)"></page-controller>
+            <article-footer :page="page"></article-footer>
         </div>
-    </keep-alive>
+        <page-controller :pageSize="pageSize" :total="total" :current-page="pageNumber"
+            @page-change="handlePageChange($event)"></page-controller>
+    </div>
 </template>
 
 <script>
@@ -75,6 +73,11 @@
         },
         mounted() {
             this.setPage(this.pageNumber ? this.pageNumber : 1)
+        },
+        watch: {
+            $route(to, from) {
+                this.setPage(this.pageNumber ? this.pageNumber : 1)
+            }
         }
     }
 </script>

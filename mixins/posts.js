@@ -11,7 +11,7 @@ export default {
             let routePath = this.$route.path.split("/")[1]
             
             return this.$sitePages.filter(page => {
-                if(filters && filters.length > 0 && routePath == '') {
+                if(filters && filters.length > 0 && (routePath == '' || routePath == 'page')) {
                     return !filters.includes(page.frontmatter.categories)
                 }
 
