@@ -27,6 +27,7 @@
             <pagination></pagination>
             <Valine v-if="$themeConfig.valine"></Valine>
         </div>
+        <ImageWrapper :open="imgOpen" :src="curImg" @close="handleImgClose" />
     </div>
 </template>
 
@@ -49,7 +50,9 @@
                 wordCount: 0,
                 imageCount: 0,
                 pages: [],
-                ifMobile: false
+                ifMobile: false,
+                curImg: '',
+                imgOpen: false
             }
         },
         mounted() {
@@ -61,6 +64,7 @@
             navigator.userAgent && (this.ifMobile = Reg.test(navigator.userAgent))
 
             this.countWords()
+            this.imgBindEvent()
         },
         watch: {
             $route(to, from) {
@@ -82,6 +86,20 @@
 
                 this.wordCount = articleText.length
                 this.imageCount = articleImages.length
+            },
+            imgBindEvent() {
+                const articleImages = document.querySelectorAll('.article-content img')
+
+                articleImages.forEach(image => {
+                    image.addEventListener('click', this.handleImgClick.bind(this))
+                })
+            },
+            handleImgClick(e) {
+                this.curImg = e.target.src
+                this.imgOpen = true
+            },
+            handleImgClose() {
+                this.imgOpen = false
             }
         }
     }
