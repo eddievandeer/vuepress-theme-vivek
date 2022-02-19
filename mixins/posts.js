@@ -1,5 +1,6 @@
 import { sortPostsByStickyAndDate } from '../util/postsData'
 import { countCategories, countTags } from '../util/helper'
+import { isUndef } from '../util/utils'
 
 export default {
     computed: {
@@ -12,7 +13,10 @@ export default {
             
             return this.$sitePages.filter(page => {
                 if(filters && filters.length > 0 && (routePath == '' || routePath == 'page')) {
-                    return !filters.includes(page.frontmatter.categories)
+                    return (
+                        !filters.includes(page.frontmatter.categories)
+                        && (isUndef(page.frontmatter.not) || page.frontmatter.not !== true)
+                    )
                 }
 
                 return !page.frontmatter.not
