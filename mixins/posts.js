@@ -16,6 +16,7 @@ export default {
                     return (
                         !filters.includes(page.frontmatter.categories)
                         && (isUndef(page.frontmatter.not) || page.frontmatter.not !== true)
+                        && (isUndef(page.frontmatter.notShow) || page.frontmatter.notShow !== true)
                     )
                 }
 
