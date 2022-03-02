@@ -6,17 +6,7 @@
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
             </div>
-            <div
-                class="image-container"
-                @mousedown="handleDown"
-                @mousemove="handleMove"
-                @mouseup="handleUp"
-                @mouseleave="handleUp"
-                @touchstart="handleDown"
-                @touchmove="handleMove"
-                @touchend="handleUp"
-                @touchcancel="handleUp"
-            >
+            <div class="image-container" ref="container">
                 <img :class="['image-zoom', times[zoom]]" :src="src" :alt="alt" draggable="false" ref="image">
             </div>
             <div class="image-controller">
@@ -32,10 +22,12 @@
 </template>
 
 <script>
+import { IsPC } from '../util/utils'
+
 let lastX = 0, lastY = 0
 let nowX = 0, nowY = 0
 let minusX = 0, minusY = 0
-let down = false
+let container
 
 export default {
     name: "ImageWrapper",
@@ -73,37 +65,45 @@ export default {
             // lastX = event.clientX - (minusX == 0 ? this.$refs.image.offsetLeft : minusX)
             // lastY = event.clientY - (minusY == 0 ? this.$refs.image.offsetTop : minusY)
 
-            down = true
-        },
-        handleMove(e) {
-            if(down) {
-                let event = e || window.event
-                event.preventDefault()
+            const handleMove = (e) => {
+                this.handleMove(e)
+            }
 
-                const edgeX = this.$refs.image.clientWidth - 150
-                const edgeY = this.$refs.image.clientHeight - 300
-
-                nowX = event.clientX !== undefined ? event.clientX : event.touches[0].clientX
-                nowY = event.clientY !== undefined ? event.clientY : event.touches[0].clientY
-
-                let minusX = nowX - lastX
-                let minusY = nowY - lastY
-
-                if(Math.abs(minusX) > edgeX) {
-                    minusX = minusX > 0 ? edgeX : -edgeX
-                }
-
-                if(Math.abs(minusY) > edgeY) {
-                    minusY = minusY > 0 ? edgeY : -edgeY
-                }
-
-                this.$refs.image.style = `top: ${minusY}px; left: ${minusX}px;`
+            if(IsPC()) {
+                container.onmousemove = handleMove
+            } else {
+                container.ontouchmove = handleMove
             }
         },
-        handleUp() {
+        handleMove(e) {
+            let event = e || window.event
+            event.preventDefault()
+
+            const edgeX = this.$refs.image.clientWidth - 150
+            const edgeY = this.$refs.image.clientHeight - 300
+
+            nowX = event.clientX !== undefined ? event.clientX : event.touches[0].clientX
+            nowY = event.clientY !== undefined ? event.clientY : event.touches[0].clientY
+
             minusX = nowX - lastX
             minusY = nowY - lastY
-            down = false
+
+            if(Math.abs(minusX) > edgeX) {
+                minusX = minusX > 0 ? edgeX : -edgeX
+            }
+
+            if(Math.abs(minusY) > edgeY) {
+                minusY = minusY > 0 ? edgeY : -edgeY
+            }
+
+            this.$refs.image.style = `top: ${minusY}px; left: ${minusX}px;`
+        },
+        handleUp() {
+            if(IsPC()) {
+                container.onmousemove = null
+            } else {
+                container.ontouchmove = null
+            }
         },
         enlargeImage() {
             if(this.zoom < this.times.length - 1) {
@@ -114,6 +114,19 @@ export default {
             if(this.zoom > 0) {
                 this.zoom = this.zoom - 1
             }
+        }
+    },
+    mounted() {
+        container = this.$refs.container
+
+        if(IsPC()) {
+            container.addEventListener('mousedown', this.handleDown)
+            container.onmouseup = this.handleUp
+            container.onmouseleave = this.handleUp
+        } else {
+            container.addEventListener('touchstart', this.handleDown)
+            container.ontouchend = this.handleUp
+            container.ontouchcancel = this.handleUp
         }
     }
 }
