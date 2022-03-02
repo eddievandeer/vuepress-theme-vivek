@@ -65,6 +65,7 @@ export function IsPC() {
     return flag;
 }
 
+// 防抖函数
 export function debounce(fn, delay) {
     let timer = null
 
@@ -77,4 +78,24 @@ export function debounce(fn, delay) {
             fn.apply(context, arguments)
         }, delay)
     }
+}
+
+export function throttle(fn, delay) {
+    let valid = true
+    const context = this
+
+    return function() {
+        if(valid) {
+            valid = false
+            setTimeout(() => {
+                fn.apply(context, arguments)
+                valid = true
+            }, delay)
+        }
+    }
+}
+
+// 判断是否为未定义
+export function isUndef (v) {
+    return v === undefined || v === null
 }

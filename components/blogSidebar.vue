@@ -1,7 +1,7 @@
 <template>
     <div class="blog-sidebar" :class="sidebar ? '' : 'hide'">
         <div class="sidebar-header">
-            <div class="logo-box" @click="test">
+            <div class="logo-box">
                 <img class="header-logo" :src="logo" alt="">
             </div>
             <p class="header-title">{{$site.title}}</p>
@@ -53,15 +53,9 @@
                 }]
             },
             nav() {
-                console.log(this.$themeConfig.nav);
                 return this.$themeConfig.nav.filter((item) => {
                     return item.link !== undefined
                 })
-            }
-        },
-        methods: {
-            test() {
-                console.log(this)
             }
         }
     }

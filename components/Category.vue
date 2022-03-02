@@ -74,7 +74,6 @@
             $route(to, from) {
                 if (to.path !== from.path) {
                     this.setPage(parseInt(this.pageNumber))
-                    console.log(this.pages);
                 }
             }
         }
