@@ -1,6 +1,6 @@
 import '@theme/styles/main.scss'
 import 'font-awesome/css/font-awesome.min.css'
-import 'prismjs/themes/prism-tomorrow.css'
+import 'prismjs/themes/prism-tomorrow.min.css'
 import './styles/code.scss'
 import postMixin from '@theme/mixins/posts'
 import routes from '@theme/routes'
