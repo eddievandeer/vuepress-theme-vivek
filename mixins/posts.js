@@ -7,11 +7,18 @@ export default {
         $sitePages() {
             return this.$site.pages.filter(page => page.path.endsWith('html'))
         },
+        $sortedPages() {
+            let pages = this.$sitePages
+
+            sortPostsByStickyAndDate(pages)
+
+            return pages
+        },
         $filteredPages() {
             const { filters } = this.$themeConfig
             let routePath = this.$route.path.split("/")[1]
             
-            return this.$sitePages.filter(page => {
+            return this.$sortedPages.filter(page => {
                 if(filters && filters.length > 0 && (routePath == '' || routePath == 'page')) {
                     return (
                         !filters.includes(page.frontmatter.categories)
@@ -23,24 +30,17 @@ export default {
                 return !page.frontmatter.not
             })
         },
-        $sortedPages() {
-            let pages = this.$filteredPages
-
-            sortPostsByStickyAndDate(pages)
-
-            return pages
-        },
         $listPages() {
             let routePath = this.$route.path.split("/")[1]
 
-            if(routePath == 'page') return this.$sortedPages
+            if(routePath == 'page') return this.$filteredPages
 
-            return this.$sortedPages.filter((page) => page.regularPath.split("/")[1] == routePath)
+            return this.$filteredPages.filter((page) => page.regularPath.split("/")[1] == routePath)
         },
         $categories() {
             const siteCategories = new Map()
 
-            this.$sitePages.forEach((page) => {
+            this.$sortedPages.forEach((page) => {
                 countCategories(page, siteCategories)
             })
 
@@ -49,7 +49,7 @@ export default {
         $tags() {
             const siteTags = new Map()
             
-            this.$sitePages.forEach((page) => {
+            this.$sortedPages.forEach((page) => {
                 countTags(page, siteTags)
             })
 
