@@ -210,9 +210,9 @@ export default {
     }
   },
   mounted() {
-    let top = document.querySelector(".global-ui");
+    let top = document.querySelector(".global-ui .back-to-top");
 
-    top.addEventListener("click", this.hideHeader);
+    top.addEventListener("click", this.hideHeader, false);
 
     this.$nextTick(() => {
       let main = this.$refs.main;
