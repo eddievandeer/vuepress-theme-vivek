@@ -1,7 +1,7 @@
 <template>
     <div class="valine-body">
         <div class="footer">
-            <span :id="url" class="leancloud_visitors" data-flag-title="Your Article Title">
+            <span :id="url" class="leancloud_visitors" :data-flag-title="document.title">
                 <em class="post-meta-item-text">阅读量 </em>
                 <i class="leancloud-visitors-count"></i>
             </span>
