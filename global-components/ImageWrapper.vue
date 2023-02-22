@@ -16,6 +16,9 @@
                 <button class="image-shrink" @click="shrinkImage">
                     <i class="fa fa-search-minus" aria-hidden="true"></i>
                 </button>
+                <button class="image-undo" @click="imageHoming">
+                    <i class="fa fa-undo" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -79,8 +82,8 @@ export default {
             let event = e || window.event
             event.preventDefault()
 
-            const edgeX = this.$refs.image.clientWidth - 150
-            const edgeY = this.$refs.image.clientHeight - 300
+            const edgeX = this.$refs.image.clientWidth
+            const edgeY = this.$refs.image.clientHeight
 
             nowX = event.clientX !== undefined ? event.clientX : event.touches[0].clientX
             nowY = event.clientY !== undefined ? event.clientY : event.touches[0].clientY
@@ -114,6 +117,11 @@ export default {
             if(this.zoom > 0) {
                 this.zoom = this.zoom - 1
             }
+        },
+        imageHoming() {
+            this.$refs.image.style = ''
+            minusX = 0
+            minusY = 0
         }
     },
     mounted() {
@@ -216,7 +224,8 @@ export default {
     }
 
     .image-enlarge,
-    .image-shrink {
+    .image-shrink,
+    .image-undo {
         width: 3rem;
         height: 3rem;
         color: white;

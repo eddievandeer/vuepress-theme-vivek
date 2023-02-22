@@ -1,7 +1,7 @@
 <template>
     <div class="valine-body">
         <div class="footer">
-            <span :id="url" class="leancloud_visitors" data-flag-title="Your Article Title">
+            <span :id="url" class="leancloud_visitors" :data-flag-title="title">
                 <em class="post-meta-item-text">阅读量 </em>
                 <i class="leancloud-visitors-count"></i>
             </span>
@@ -24,10 +24,12 @@
                 valine: null,
                 url: '',
                 lastModifiedTime: '',
-                isRouterAlive: true
+                isRouterAlive: true,
+                title: ''
             }
         },
         mounted() {
+            this.title = document.title
             this.lastModifiedTime = this.$page.lastUpdated
             import('valine').then(Valine => {
                 this.valine = new Valine.default()

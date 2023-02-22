@@ -1,6 +1,6 @@
 <template>
     <div class="bar-list" @click="showTools" @mouseleave="hideTools">
-        {{list.text}} &nbsp; <i class="fa fa-caret-down" aria-hidden="true"></i>
+        <button>{{list.text}}</button> &nbsp; <i class="fa fa-caret-down" aria-hidden="true"></i>
         <div class="bar-item-list">
             <bar-item v-for="item in list.items" :item="item"></bar-item>
         </div>

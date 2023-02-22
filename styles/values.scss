@@ -1,24 +1,13 @@
-:root {
-      --color-bg: #F9F9F9;
-      --color-bg-hover: #F6F6F6;
-      --color-shadow-left: rgba(255, 255, 255, 1);
-      --color-shadow-right: rgba(0, 0, 0, 0.1);
-}
+$primary-background: var(--color-primary-bg);
 
-:root .dark {
-      --color-bg: #3a3a3a;
-      --color-shadow-left: #424242;
-      --color-shadow-right: #323232;
-}
+$container-bg: var(--color-container-bg);
 
-$primary-background: var(--color-bg);
+$primary-shadow: 3px 3px 8px var(--color-shadow-right),
+-3px -3px 8px var(--color-shadow-left);
 
-$primary-shadow: 3px 3px 8px #a3a3a3,
--3px -3px 8px #ffffff;
+$card-shadow: 0 0 10px 1px var(--color-card-shadow);
 
-$card-shadow: 0 0 10px 1px #cfcfcf;
-
-$card-shadow-hover: 0 0 15px 1px #cfcfcf;
+$card-shadow-hover: 0 0 15px 1px var(--color-card-shadow);
 
 $button-shadow: 15px 15px 18px var(--color-shadow-right),
 -15px -15px 18px var(--color-shadow-left);
@@ -34,7 +23,25 @@ inset -10px -10px 18px var(--color-shadow-left);
 $word-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2),
 -5px -5px 5px var(--color-shadow-left);
 
-$word-color:#2c3e50;
+$word-color: var(--color-word);
+
+$footer-bg: var(--color-footer-bg);
+
+$copyright-bg: var(--color-copyright-bg);
+
+$blockquote-color: var(--color-blockquote-word);
+
+$blockquote-bg-color: var(--color-blockquote-bg);
+
+$code-color: var(--color-code);
+
+$code-color-bg: var(--color-code-bg);
+
+$list-item-color: var(--color-list-item);
+
+$list-item-color-active: var(--color-list-item-active);
+
+$tip-world-color: var(--color-custom-block-tip-word);
 
 $word-color-light:#546c85;
 
@@ -44,7 +51,7 @@ $word-color-blue-light: #59bdff;
 
 $cloud-z-index: 8;
 
-$container-min-height: calc(100vh - 200px);
+$container-min-height: calc(100vh - 60px);
 
 $container-height: calc(100vh - 60px);
 

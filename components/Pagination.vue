@@ -36,7 +36,7 @@
         },
         methods: {
             initPage() {
-                const nowPages = this.$sortedPages,
+                const nowPages = this.$filteredPages,
                     nowPageKey = this.$page.key
 
                 for (let i = 0; i < nowPages.length; i++) {
