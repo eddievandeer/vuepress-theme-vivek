@@ -63,7 +63,7 @@
     <div class="blog-articles">
       <blog-articles
         :pageNumber="pageNumber"
-        :filted="$sortedPages"
+        :filted="$filteredPages"
         path="page"
       ></blog-articles>
       <blog-footer></blog-footer>
