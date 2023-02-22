@@ -1,7 +1,7 @@
 <template>
     <div class="blog-controller">
-        <div class="controller-menu" :class="menu ? 'open' : ''">
-            <button class="show-menu controller-item" @click="toggleMenu">
+        <div class="controller-menu">
+            <button class="show-menu controller-item">
                 <div class="item-dot"></div>
             </button>
             <button class="show-list controller-item" @click="toggleList">
@@ -13,6 +13,10 @@
             <button class="show-sidebar controller-item" @click="toggleSidebar">
                 <i class="fa fa-columns" aria-hidden="true"></i>
             </button>
+            <button class="change-mode controller-item" @click="toggleMode">
+                <i v-if="mode === 0" class="fa fa-sun-o" aria-hidden="true" style="color: #FFE000"></i>
+                <i v-if="mode === 1" class="fa fa-moon-o" aria-hidden="true" style="color: #31BCEE"></i>
+            </button>
         </div>
     </div>
 </template>
@@ -23,18 +27,28 @@
         name: 'BlogController',
         data() {
             return {
-                menu: false
+                mode: 0
             }
         },
+        mounted() {
+            const localMode = localStorage.getItem('mode')
+
+            if(localMode) {
+                this.mode = parseInt(localMode)
+            }
+            if(this.mode === 1) document.documentElement.classList.add('dark')
+        },
         methods: {
-            toggleMenu() {
-                this.menu = !this.menu
-            },
             toggleList() {
                 this.$eventBus.$emit('list')
             },
             toggleSidebar() {
                 this.$eventBus.$emit('sidebar')
+            },
+            toggleMode() {
+                this.mode = (this.mode + 1) % 2
+                document.documentElement.classList.toggle('dark')
+                localStorage.setItem('mode', this.mode)
             },
             backToTop() {
                 const home = document.querySelector('.home-page')
@@ -72,7 +86,7 @@
         // tap-highlight-color:rgba(0, 0, 0, 0);
     }
 
-    .controller-menu.open {
+    .controller-menu:focus-within {
         .show-menu {
             transform: rotateZ(90deg);
         }
@@ -91,6 +105,21 @@
 
         .show-sidebar {
             transform: translateX(-4.5rem) scale(1);
+        }
+
+        .change-mode {
+            transform: translateX(-4.5rem) translateY(-4.5rem) scale(1);
+        }
+    }
+
+    .controller-menu.hide {
+        .controller-item:not(.show-menu) {
+            opacity: 0;
+            transform: scale(0.1);
+        }
+
+        .show-menu {
+            transform: rotateZ(0);
         }
     }
 

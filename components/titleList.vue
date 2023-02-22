@@ -161,19 +161,19 @@
             // box-shadow: $primary-shadow;
 
             a {
-                color: #2a80b9;
+                color: $list-item-color-active;
             }
         }
 
         &.active {
-            border-left-color: #2a80b9;
+            border-left-color: $list-item-color-active;
         }
     }
 
     .list-item-link {
         width: 100%;
         height: 100%;
-        color: #2c3e50;
+        color: $list-item-color;
         text-decoration: none;
         display: flex;
         align-items: center;

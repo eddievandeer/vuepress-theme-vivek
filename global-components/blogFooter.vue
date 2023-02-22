@@ -29,16 +29,16 @@ export default {
   width: 100%;
   height: 160px;
   font-size: 0.9rem;
-  background-color: #e9e9e9;
+  background-color: $footer-bg;
   border-top: 1px solid #d1d1d1;
   flex-direction: column;
 
   .beian a {
-    color: #0078e7;
+    color: $word-color-blue;
     transition: color 0.1s;
 
     &:hover {
-      color: #db2828;
+      color: $word-color-blue-light;
     }
   }
 

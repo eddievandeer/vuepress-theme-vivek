@@ -25,8 +25,8 @@
             }
         }
 
-        .vheader .vinput:focus {
-            border-bottom: solid 1px #00a1d6;
+        .vheader .vinput[class]:focus {
+            border-bottom: solid 1px #66b1ff;
         }
     }
 
@@ -70,18 +70,9 @@
         resize: none;
     }
 
-    .vbtn {
+    .vbtn[class] {
         width: auto;
         height: 40px;
-        font-size: 16px;
-        color: white;
-        border: none;
-        background-color: #00A1D6;
-
-        &:hover {
-            color: white;
-            border: none;
-            background-color: #00B5E5;
-        }
+        font-size: 14px;
     }
 }

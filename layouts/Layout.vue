@@ -98,9 +98,11 @@ export default {
       return Object.getOwnPropertyNames(this.$page.frontmatter).length === 0;
     },
     handleSidebar() {
+      if(this.list) this.list = false
       this.sidebar = !this.sidebar
     },
     handleList() {
+      if(this.sidebar) this.sidebar = false
       this.list = !this.list
     }
   }
@@ -130,8 +132,12 @@ export default {
 
   .main-container {
     width: 100vw;
-    transition: all .2s ease-in-out;
+    min-height: $container-min-height;
+    transition: all 0.2s ease-in-out;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   @media screen and (max-width: 768px) {
@@ -141,7 +147,7 @@ export default {
 
     .theme-container.sidebar {
       padding-left: 0;
-      background-color: $word-color;
+      background-color: $container-bg;
 
       .theme-container {
         margin: 1.5rem;

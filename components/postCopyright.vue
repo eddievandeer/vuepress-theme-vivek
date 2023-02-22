@@ -44,7 +44,7 @@ export default {
     font-size: 14px;
     padding: .6rem 1rem;
     border-left: 3px solid $word-color-blue;
-    background-color: #f3f3f4;
+    background-color: $copyright-bg;
     list-style: none;
 
     .post-copyright-link a {

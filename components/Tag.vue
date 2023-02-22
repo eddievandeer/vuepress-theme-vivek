@@ -81,7 +81,6 @@
     @import '../styles/values.scss';
 
     .tag-container {
-        min-height: $container-min-height;
         @extend .flex-column;
         background-color: $primary-background;
         justify-content: space-between;

@@ -121,8 +121,8 @@
         max-width: 740px;
         margin: 1.5rem auto;
         padding: 1rem 3rem;
-        background-color: #fcfcfc;
-        transition: box-shadow .1s ease-in-out;
+        background-color: $primary-background;
+        transition: box-shadow, background-color .1s, .2s ease-in-out;
         box-shadow: $card-shadow;
 
         &:hover {
